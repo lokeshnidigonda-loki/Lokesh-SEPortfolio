@@ -29,6 +29,9 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    /* Optional subtle dark grid background */
+    background-image: radial-gradient(rgba(88, 166, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
   }
 
   a { text-decoration: none; color: inherit; }
@@ -46,7 +49,7 @@
   }
   .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
   .logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
   .nav-links a { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
   .nav-links a:hover { color: var(--text-main); }
   .hire-btn {
@@ -124,13 +127,15 @@
 
   /* CARDS GRID */
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
   
   .card-box {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 20px; padding: 28px;
   }
-  .card-box h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--accent); }
+  .card-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
+  .card-box h4 { font-size: 0.95rem; color: var(--text-main); font-weight: 700; margin-bottom: 6px; }
   .card-box p { color: var(--text-muted); font-size: 0.9rem; }
 
   /* PROJECT CARDS */
@@ -146,11 +151,17 @@
     padding: 4px 12px; font-size: 0.75rem; font-weight: 700;
   }
 
-  /* CINEMA REVIEWS */
+  /* CINEMA MOVIE CARD WITH POSTER */
   .movie-card {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 24px;
+    border-radius: 20px; padding: 20px; display: flex; gap: 20px; align-items: flex-start;
   }
+  .movie-poster {
+    width: 110px; height: 160px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .movie-info h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text-main); }
+  .movie-info p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; }
 
   footer {
     text-align: center; padding: 40px; color: var(--text-muted);
@@ -160,9 +171,11 @@
   @media(max-width: 900px) {
     .hero { flex-direction: column; text-align: center; padding-top: 120px; }
     .hero-title { font-size: 3rem; }
-    .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .hero-left { max-width: 100%; }
     .eyebrow-tag { justify-content: center; }
+    .movie-card { flex-direction: column; }
+    .movie-poster { width: 100%; height: 240px; }
   }
 </style>
 </head>
@@ -172,6 +185,7 @@
   <div class="logo">Lokesh<span>.dev</span></div>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#cinema">Cinema Journal</a>
     <a href="#contact">Contact</a>
@@ -184,10 +198,11 @@
   <div class="hero-left">
     <div class="eyebrow-tag">Nidigonda Lokesh — Software Engineer</div>
     <h1 class="hero-title">I build full-stack systems — and algorithms that <span>scale.</span></h1>
-    <p class="hero-sub">Software Engineer skilled in Python, Node.js/Express, SQLite/MySQL, REST APIs, and Machine Learning. Experienced in building real-world software products and automated web platforms.</p>
+    <p class="hero-sub">Software Engineer skilled in Python, Node.js/Express, SQLite/MySQL, REST APIs, and Machine Learning. Experienced in building real-world software products and automated platforms.</p>
     <div class="btn-group">
-      <a href="https://github.com/lokeshnidigonda-loki" target="_blank" class="btn-main"><i class="fab fa-github"></i> GitHub Profile</a>
-      <a href="https://leetcode.com/u/VSz199ebGu/" target="_blank" class="btn-sec"><i class="fas fa-code"></i> LeetCode Profile</a>
+      <a href="https://github.com/lokeshnidigonda-loki" target="_blank" class="btn-main"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://leetcode.com/u/VSz199ebGu/" target="_blank" class="btn-sec"><i class="fas fa-code"></i> LeetCode</a>
+      <a href="https://x.com/lokeshnidigonda" target="_blank" class="btn-sec"><i class="fab fa-x-twitter"></i> Twitter / X</a>
     </div>
   </div>
 
@@ -220,6 +235,28 @@
     <div class="card-box">
       <h3>Developer Tools</h3>
       <p>Git, GitHub, Twilio API, VS Code, Postman, LeetCode Problem Solving.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION SECTION -->
+<section id="education">
+  <h2 class="sec-heading">Education History</h2>
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>2022 — 2026</h3>
+      <h4>B.Tech, CSE (Data Science)</h4>
+      <p><b>Marri Laxman Reddy Institute of Technology (MLRIT)</b>, Hyderabad[cite: 1]<br>CGPA: 7.59 / 10.0[cite: 1]</p>
+    </div>
+    <div class="card-box">
+      <h3>2020 — 2022</h3>
+      <h4>Intermediate (MPC)</h4>
+      <p><b>Sri Chaitanya Junior College</b>, Hyderabad[cite: 1]<br>Percentage: 96.0%[cite: 1]</p>
+    </div>
+    <div class="card-box">
+      <h3>2019 — 2020</h3>
+      <h4>SSC (Secondary School)</h4>
+      <p><b>Zilla Parishad High School</b>, Kusumanchi[cite: 1]<br>GPA / Score: 98.0%[cite: 1]</p>
     </div>
   </div>
 </section>
@@ -258,7 +295,7 @@
     <p style="color:var(--text-muted); margin-bottom:16px;">
       Built a Decision Tree classification model achieving 85%+ accuracy for credit risk evaluation. Conducted end-to-end Exploratory Data Analysis (EDA) on financial datasets to clean, validate, and prepare data for modeling.
     </p>
-    <a href="https://github.com/lokeshnidigonda-loki/credit-risk-model" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Credit Risk Repository</a>
+    <a href="https://github.com/lokeshnidigonda-loki/credit-risk-model" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Credit Risk Repo</a>
   </div>
 
   <!-- PROJECT 3: STARTUP SUCCESS PREDICTION -->
@@ -274,31 +311,32 @@
     <p style="color:var(--text-muted); margin-bottom:16px;">
       Trained a Random Forest classifier with GridSearchCV hyperparameter tuning, increasing prediction accuracy by 12%. Visualized feature importances using Matplotlib to communicate model insights.
     </p>
-    <a href="https://github.com/lokeshnidigonda-loki/startupsuccess" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Startup Success Repository</a>
+    <a href="https://github.com/lokeshnidigonda-loki/startupsuccess" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Startup Success Repo</a>
   </div>
 </section>
 
-<!-- AUTOMATED LETTERBOXD CINEMA JOURNAL -->
+<!-- AUTOMATED LETTERBOXD CINEMA JOURNAL WITH POSTERS -->
 <section id="cinema">
   <h2 class="sec-heading">Cinema Journal & <i>Film Reviews</i></h2>
   <div class="grid-2" id="letterboxd-feed">
-    <p style="color:var(--text-muted);">Loading live reviews from Letterboxd...</p>
+    <p style="color:var(--text-muted);">Loading live reviews and posters from Letterboxd...</p>
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- CONTACT SECTION WITH TWITTER / X -->
 <section id="contact">
   <h2 class="sec-heading">Get in Touch</h2>
   <div class="grid-4">
     <a href="mailto:lokeshnidigonda@gmail.com" class="card-box"><b>Email</b><p>lokeshnidigonda@gmail.com</p></a>
     <a href="https://linkedin.com/in/lokeshnidigonda" target="_blank" class="card-box"><b>LinkedIn</b><p>in/lokeshnidigonda</p></a>
     <a href="https://github.com/lokeshnidigonda-loki" target="_blank" class="card-box"><b>GitHub</b><p>github.com/lokeshnidigonda-loki</p></a>
-    <a href="https://leetcode.com/u/VSz199ebGu/" target="_blank" class="card-box"><b>LeetCode</b><p>leetcode.com/u/VSz199ebGu/</p></a>
+    <a href="https://x.com/lokeshnidigonda" target="_blank" class="card-box"><b>Twitter / X</b><p>@lokeshnidigonda</p></a>
   </div>
 </section>
 
 <footer>&copy; 2026 Nidigonda Lokesh. All rights reserved.</footer>
 
+<!-- LETTERBOXD DYNAMIC SCRIP WITH MOVIE POSTER EXTRACTION -->
 <script>
   async function fetchLetterboxdReviews() {
     const username = 'lokeshnidigonda';
@@ -313,20 +351,27 @@
 
       if (data.status === 'ok' && data.items.length > 0) {
         data.items.slice(0, 2).forEach(item => {
+          // Extract image source URL from item description HTML
+          const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+          const posterUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/110x160?text=Movie+Poster';
           const cleanReview = item.description.replace(/<[^>]*>?/gm, '').trim();
 
           const card = document.createElement('div');
           card.className = 'movie-card';
           card.innerHTML = `
-            <h3>${item.title}</h3>
-            <p style="margin-top:10px; color:var(--text-muted);">"${cleanReview.substring(0, 180)}..."</p>
-            <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:12px;">Read Full Review on Letterboxd →</a>
+            <img class="movie-poster" src="${posterUrl}" alt="${item.title}">
+            <div class="movie-info">
+              <h3>${item.title}</h3>
+              <p>"${cleanReview.substring(0, 160)}..."</p>
+              <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:10px; font-size:0.85rem;">Read Full Review on Letterboxd →</a>
+            </div>
           `;
           container.appendChild(card);
         });
       }
     } catch (e) {
       console.error(e);
+      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--text-muted);">Unable to load Letterboxd reviews.</p>';
     }
   }
   document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
