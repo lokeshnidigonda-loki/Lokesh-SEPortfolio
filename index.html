@@ -7,13 +7,13 @@
 <!-- FontAwesome Icons & Google Fonts -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
   :root {
     --bg: #0d1117;
-    --card-bg: #161b22;
+    --card-bg: rgba(22, 27, 34, 0.85);
     --text-main: #f0f6fc;
     --text-muted: #8b949e;
     --accent: #58a6ff;
@@ -29,31 +29,44 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    padding-bottom: 90px; /* Padding for floating bottom dock */
+    padding-bottom: 90px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   a { text-decoration: none; color: inherit; }
   ul { list-style: none; }
   img { max-width: 100%; height: auto; display: block; }
 
+  /* SCROLL REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* FLOATING BOTTOM DOCK NAVIGATION */
   .floating-dock {
     position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
     z-index: 1000;
-    display: flex; align-items: center; gap: 14px;
-    padding: 10px 22px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 18px;
     background: rgba(22, 27, 34, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 999px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   }
   .dock-btn {
-    width: 40px; height: 40px; border-radius: 50%;
+    width: 38px; height: 38px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: var(--text-muted); font-size: 1.05rem;
+    color: var(--text-muted); font-size: 1rem;
     transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
   }
   .dock-btn:hover {
     color: var(--text-main);
@@ -61,7 +74,7 @@
     transform: translateY(-3px);
   }
 
-  /* HERO SECTION WITH BACKGROUND IMAGE */
+  /* HERO SECTION */
   .hero {
     min-height: 100vh; padding: 100px 8% 60px;
     display: flex; align-items: center; justify-content: space-between;
@@ -80,6 +93,7 @@
   }
 
   .hero-title {
+    font-family: 'Syne', sans-serif;
     font-size: 4rem; font-weight: 800; line-height: 1.05;
     letter-spacing: -2px; margin-bottom: 24px; color: var(--text-main);
   }
@@ -128,7 +142,7 @@
 
   /* SECTIONS */
   section { padding: 90px 8%; }
-  .sec-heading { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 36px; }
+  .sec-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 36px; }
   .sec-heading i { font-family: 'Instrument Serif', serif; font-weight: 400; }
 
   /* CARDS GRID */
@@ -138,7 +152,7 @@
   
   .card-box {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 28px;
+    border-radius: 20px; padding: 28px; backdrop-filter: blur(10px);
   }
   .card-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
   .card-box h4 { font-size: 0.95rem; color: var(--text-main); font-weight: 700; margin-bottom: 6px; }
@@ -149,12 +163,13 @@
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 24px; overflow: hidden; margin-bottom: 30px;
     display: flex; flex-direction: row; align-items: center;
+    backdrop-filter: blur(10px);
   }
   .project-card-img {
     width: 40%; height: 280px; object-fit: cover; flex-shrink: 0;
   }
   .project-card-body { padding: 32px; width: 60%; }
-  .project-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+  .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
   .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
   .pill {
     background: rgba(88, 166, 255, 0.1); color: var(--accent);
@@ -228,7 +243,7 @@
 
   /* BEST SCREENS IN HYDERABAD CARDS */
   .screens-subheading {
-    font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px;
+    font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px;
   }
   .screens-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
@@ -255,12 +270,26 @@
     padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(88, 166, 255, 0.2);
   }
 
+  /* SPOTIFY SOUNDTRACKS SECTION */
+  .spotify-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 20px;
+  }
+  .spotify-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 20px; padding: 16px; backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+  .spotify-card iframe {
+    width: 100%; border-radius: 12px; height: 152px; border: none;
+  }
+
   /* WORK HARD · EARN $ · TRAVEL FOOTER SECTION */
   .motto-section {
     text-align: center; padding: 110px 8% 60px;
     border-top: 1px solid var(--border);
   }
   .motto-title {
+    font-family: 'Syne', sans-serif;
     font-size: 4rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 28px;
   }
   .motto-title span.travel {
@@ -280,7 +309,7 @@
   @media(max-width: 1000px) {
     .hero { flex-direction: column; text-align: center; padding-top: 100px; }
     .hero-title { font-size: 3rem; }
-    .grid-4, .grid-3, .grid-2, .movie-grid, .screens-grid { grid-template-columns: 1fr; }
+    .grid-4, .grid-3, .grid-2, .movie-grid, .screens-grid, .spotify-grid { grid-template-columns: 1fr; }
     .hero-left { max-width: 100%; }
     .eyebrow-tag { justify-content: center; }
     .project-card { flex-direction: column; }
@@ -293,7 +322,7 @@
 <body>
 
 <!-- HERO SECTION -->
-<section class="hero" id="home">
+<section class="hero reveal" id="home">
   <div class="hero-left">
     <div class="eyebrow-tag">Nidigonda Lokesh — Software Engineer</div>
     <h1 class="hero-title">I build full-stack systems — and algorithms that <span>scale.</span></h1>
@@ -316,7 +345,7 @@
 </section>
 
 <!-- TECHNICAL SKILLS -->
-<section id="about">
+<section class="reveal" id="about">
   <h2 class="sec-heading">Technical Core & Capabilities</h2>
   <img src="BOOKANDGLASS.jpg" class="about-banner" alt="Developer Desk & Engineering Study">
   <div class="grid-4">
@@ -340,7 +369,7 @@
 </section>
 
 <!-- EDUCATION SECTION -->
-<section id="education">
+<section class="reveal" id="education">
   <h2 class="sec-heading">Education History</h2>
   <div class="grid-3">
     <div class="card-box">
@@ -362,7 +391,7 @@
 </section>
 
 <!-- FEATURED SOFTWARE ENGINEERING PROJECTS -->
-<section id="projects">
+<section class="reveal" id="projects">
   <h2 class="sec-heading">Featured Software Projects</h2>
   
   <!-- PROJECT 1: AMMA HAIRSTYLE -->
@@ -423,8 +452,8 @@
   </div>
 </section>
 
-<!-- CINEMA SECTION (PRANEETH-STYLE MOVIE CARDS & BEST SCREENS IN HYD) -->
-<section id="cinema">
+<!-- CINEMA SECTION -->
+<section class="reveal" id="cinema">
   <div class="cinema-header">
     <div>
       <div class="review-badge"><span class="review-badge-dot"></span> Film Journal & Reviews</div>
@@ -442,8 +471,6 @@
   <div class="screens-section">
     <h3 class="screens-subheading">Best screens in Hyderabad</h3>
     <div class="screens-grid">
-      
-      <!-- 01: PRASADS PCX -->
       <div class="screen-ticket">
         <span class="screen-num">01</span>
         <div class="screen-details">
@@ -452,8 +479,6 @@
           <span class="screen-badge">PCX Screen</span>
         </div>
       </div>
-
-      <!-- 02: PRASADS SCREEN 4 -->
       <div class="screen-ticket">
         <span class="screen-num">02</span>
         <div class="screen-details">
@@ -462,8 +487,6 @@
           <span class="screen-badge">PCX HDR by Barco</span>
         </div>
       </div>
-
-      <!-- 03: ALLU CINEMAS -->
       <div class="screen-ticket">
         <span class="screen-num">03</span>
         <div class="screen-details">
@@ -472,8 +495,6 @@
           <span class="screen-badge">4K Laser Atmos</span>
         </div>
       </div>
-
-      <!-- 04: AMB CINEMAS -->
       <div class="screen-ticket">
         <span class="screen-num">04</span>
         <div class="screen-details">
@@ -482,13 +503,27 @@
           <span class="screen-badge">HDR by Barco</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- SPOTIFY SOUNDTRACKS SECTION -->
+<section class="reveal" id="music">
+  <h2 class="sec-heading">Soundtracks for the way <i>there.</i></h2>
+  <div class="spotify-grid">
+    <!-- SPOTIFY EMBED 1 -->
+    <div class="spotify-card">
+      <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <!-- SPOTIFY EMBED 2 -->
+    <div class="spotify-card">
+      <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 </section>
 
 <!-- WORK HARD · EARN $ · TRAVEL SECTION -->
-<section class="motto-section" id="contact">
+<section class="motto-section reveal" id="contact">
   <h2 class="motto-title">work hard · earn $ · <span class="travel">travel.</span></h2>
   <div class="motto-socials">
     <a href="mailto:lokeshnidigonda@gmail.com"><i class="fas fa-envelope"></i> lokeshnidigonda@gmail.com</a>
@@ -505,23 +540,33 @@
   <a href="#projects" class="dock-btn" title="Projects"><i class="fas fa-code"></i></a>
   <a href="#education" class="dock-btn" title="Education"><i class="fas fa-graduation-cap"></i></a>
   <a href="#cinema" class="dock-btn" title="Cinema"><i class="fas fa-film"></i></a>
+  <a href="#music" class="dock-btn" title="Music"><i class="fas fa-music"></i></a>
   <a href="#contact" class="dock-btn" title="Contact"><i class="fas fa-paper-plane"></i></a>
 </div>
 
-<!-- DYNAMIC LETTERBOXD SCRIPT WITH PRANEETH OVERLAY STYLING -->
+<!-- SCRIPTS: LETTERBOXD & SCROLL REVEAL -->
 <script>
+  // INTERSECTION OBSERVER FOR SMOOTH SCROLL TRANSITIONS
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // DYNAMIC LETTERBOXD SCRIPT
   async function fetchLetterboxdReviews() {
     const username = 'lokeshnidigonda';
     const rssUrl = `https://letterboxd.com/${username}/rss/?t=${Date.now()}`;
-    
-    // Multi-proxy fallback for instant real-time fetching
     const proxies = [
       `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
       `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`
     ];
 
     let xmlText = null;
-
     for (const proxy of proxies) {
       try {
         const response = await fetch(proxy);
@@ -535,7 +580,6 @@
     }
 
     const container = document.getElementById('letterboxd-feed');
-
     if (!xmlText) {
       container.innerHTML = '<p style="color:var(--text-muted);">Unable to load live Letterboxd reviews.</p>';
       return;
@@ -547,15 +591,12 @@
       const items = xmlDoc.querySelectorAll('item');
 
       if (items.length > 0) {
-        container.innerHTML = ''; // Clear loading state
-
-        // Display latest 4 reviews with Praneeth-style cards
+        container.innerHTML = '';
         Array.from(items).slice(0, 4).forEach(item => {
           const title = item.querySelector('title')?.textContent || '';
           const link = item.querySelector('link')?.textContent || '#';
           const description = item.querySelector('description')?.textContent || '';
 
-          // Extract poster URL & clean text
           const imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
           const posterUrl = imgMatch ? imgMatch[1] : '';
           const cleanReview = description.replace(/<[^>]*>?/gm, '').trim();
