@@ -363,28 +363,31 @@
 <script>
   async function fetchLetterboxdReviews() {
     const username = 'lokeshnidigonda';
-    const rssUrl = `https://letterboxd.com/${username}/rss/`;
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    // Append a unique timestamp parameter to prevent rss2json from caching old data
+    const rssUrl = `https://letterboxd.com/${username}/rss/?_t=${Date.now()}`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&api_key=&_t=${Date.now()}`;
 
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
       const container = document.getElementById('letterboxd-feed');
-      container.innerHTML = '';
-
-      if (data.status === 'ok' && data.items.length > 0) {
-        data.items.slice(0, 2).forEach(item => {
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        container.innerHTML = ''; // Clear loading placeholder
+        
+        // Displays your latest reviews (adjust slice count if you want more than 2)
+        data.items.slice(0, 4).forEach(item => {
           const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-          const posterUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/110x160?text=Movie+Poster';
+          const posterUrl = imgMatch ? imgMatch[1] : '';
           const cleanReview = item.description.replace(/<[^>]*>?/gm, '').trim();
 
           const card = document.createElement('div');
           card.className = 'movie-card';
           card.innerHTML = `
-            <img class="movie-poster" src="${posterUrl}" alt="${item.title}">
+            ${posterUrl ? `<img class="movie-poster" src="${posterUrl}" alt="${item.title}">` : ''}
             <div class="movie-info">
               <h3>${item.title}</h3>
-              <p>"${cleanReview.substring(0, 160)}..."</p>
+              <p style="margin-top:8px;">"${cleanReview.substring(0, 180)}..."</p>
               <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:10px; font-size:0.85rem;">Read Full Review on Letterboxd →</a>
             </div>
           `;
@@ -392,8 +395,7 @@
         });
       }
     } catch (e) {
-      console.error(e);
-      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--text-muted);">Unable to load Letterboxd reviews.</p>';
+      console.error("Letterboxd fetch error:", e);
     }
   }
   document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
