@@ -7,7 +7,7 @@
 <!-- FontAwesome Icons & Google Fonts -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
@@ -17,8 +17,19 @@
     --text-main: #f0f6fc;
     --text-muted: #8b949e;
     --accent: #58a6ff;
-    --accent-green: #238636;
     --border: #30363d;
+    --dot-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* DYNAMIC LIGHT THEME (TRIGGERS AUTOMATICALLY ON SCROLL) */
+  body.theme-light {
+    --bg: #F5F4EE;
+    --card-bg: #FFFFFF;
+    --text-main: #0A0A0A;
+    --text-muted: #555555;
+    --accent: #111111;
+    --border: #E5DFC9;
+    --dot-color: rgba(0, 0, 0, 0.06);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,8 +41,9 @@
     line-height: 1.6;
     overflow-x: hidden;
     padding-bottom: 90px;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
     background-size: 24px 24px;
+    transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s ease;
   }
 
   a { text-decoration: none; color: inherit; }
@@ -57,20 +69,29 @@
     padding: 8px 18px;
     background: rgba(22, 27, 34, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 999px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: background 0.4s ease, border 0.4s ease;
+  }
+  body.theme-light .floating-dock {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
   .dock-btn {
     width: 38px; height: 38px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: var(--text-muted); font-size: 1rem;
     transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  body.theme-light .dock-btn {
+    background: rgba(0, 0, 0, 0.04);
   }
   .dock-btn:hover {
-    color: var(--text-main);
-    background: var(--accent);
+    color: #FFF;
+    background: #111;
     transform: translateY(-3px);
   }
 
@@ -80,69 +101,70 @@
     display: flex; align-items: center; justify-content: space-between;
     gap: 40px; position: relative;
     background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.95)), url('CodePIC.jpg') center/cover no-repeat;
+    color: #f0f6fc !important;
   }
   .hero-left { flex: 1.2; max-width: 650px; }
   .eyebrow-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--accent);
+    text-transform: uppercase; color: #58a6ff;
     margin-bottom: 20px;
   }
   .eyebrow-tag::before {
-    content: ''; width: 20px; height: 2px; background: var(--accent);
+    content: ''; width: 20px; height: 2px; background: #58a6ff;
   }
 
   .hero-title {
     font-family: 'Syne', sans-serif;
     font-size: 4rem; font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px; margin-bottom: 24px; color: var(--text-main);
+    letter-spacing: -2px; margin-bottom: 24px; color: #FFF;
   }
   .hero-title span {
-    color: var(--accent);
+    color: #58a6ff;
     font-family: 'Instrument Serif', serif;
     font-weight: 400; font-style: italic;
   }
 
   .hero-sub {
-    font-size: 1.15rem; color: var(--text-muted); font-weight: 500;
+    font-size: 1.15rem; color: #8b949e; font-weight: 500;
     margin-bottom: 36px; max-width: 540px;
   }
 
   .btn-group { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .btn-main {
-    background: var(--accent); color: #0d1117;
+    background: #58a6ff; color: #0d1117;
     padding: 14px 32px; border-radius: 999px; font-weight: 700;
     font-size: 0.95rem; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 8px;
   }
   .btn-main:hover { transform: translateY(-2px); }
   .btn-sec {
-    background: transparent; color: var(--text-main);
+    background: transparent; color: #f0f6fc;
     padding: 14px 32px; border-radius: 999px; font-weight: 700;
-    font-size: 0.95rem; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.95rem; border: 1px solid #30363d; display: inline-flex; align-items: center; gap: 8px;
   }
 
   /* HERO RIGHT PORTRAIT */
   .hero-right { flex: 0.9; position: relative; display: flex; justify-content: center; }
   .portrait-card {
     position: relative; width: 320px; height: 400px;
-    background: var(--card-bg); border-radius: 30px;
-    border: 2px solid var(--border); overflow: hidden;
+    background: #161b22; border-radius: 30px;
+    border: 2px solid #30363d; overflow: hidden;
   }
   .portrait-card img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center;
   }
   .status-badge {
     position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: var(--card-bg); padding: 8px 18px; border-radius: 999px;
-    border: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+    background: #161b22; padding: 8px 18px; border-radius: 999px;
+    border: 1px solid #30363d; display: flex; align-items: center; gap: 8px;
     font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    white-space: nowrap;
+    white-space: nowrap; color: #FFF;
   }
   .status-dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; }
 
   /* SECTIONS */
   section { padding: 90px 8%; }
-  .sec-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 36px; }
+  .sec-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 36px; color: var(--text-main); }
   .sec-heading i { font-family: 'Instrument Serif', serif; font-weight: 400; }
 
   /* CARDS GRID */
@@ -153,8 +175,9 @@
   .card-box {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 20px; padding: 28px; backdrop-filter: blur(10px);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
   }
-  .card-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
+  .card-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-main); font-weight: 800; }
   .card-box h4 { font-size: 0.95rem; color: var(--text-main); font-weight: 700; margin-bottom: 6px; }
   .card-box p { color: var(--text-muted); font-size: 0.9rem; }
 
@@ -164,15 +187,16 @@
     border-radius: 24px; overflow: hidden; margin-bottom: 30px;
     display: flex; flex-direction: row; align-items: center;
     backdrop-filter: blur(10px);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
   }
   .project-card-img {
     width: 40%; height: 280px; object-fit: cover; flex-shrink: 0;
   }
   .project-card-body { padding: 32px; width: 60%; }
-  .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+  .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
   .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
   .pill {
-    background: rgba(88, 166, 255, 0.1); color: var(--accent);
+    background: rgba(0, 0, 0, 0.05); color: var(--text-main);
     border: 1px solid var(--border); border-radius: 999px;
     padding: 4px 12px; font-size: 0.75rem; font-weight: 700;
   }
@@ -198,13 +222,13 @@
   }
   .praneeth-movie-card {
     position: relative; height: 360px; border-radius: 22px; overflow: hidden;
-    background: var(--card-bg); border: 1px solid var(--border);
+    background: #111; border: 1px solid var(--border);
     display: flex; flex-direction: column; justify-content: flex-end; padding: 22px;
     transition: transform 0.25s ease, border-color 0.25s ease;
   }
   .praneeth-movie-card:hover {
     transform: translateY(-5px);
-    border-color: var(--accent);
+    border-color: #111;
   }
   .movie-card-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -238,12 +262,12 @@
     font-size: 0.78rem; color: #f59e0b; font-weight: 600; margin-bottom: 8px;
   }
   .movie-card-snippet {
-    font-size: 0.78rem; color: rgba(240, 246, 252, 0.8); line-height: 1.45;
+    font-size: 0.78rem; color: rgba(240, 246, 252, 0.85); line-height: 1.45;
   }
 
   /* BEST SCREENS IN HYDERABAD CARDS */
   .screens-subheading {
-    font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px;
+    font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; color: var(--text-main);
   }
   .screens-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
@@ -253,6 +277,7 @@
     border-radius: 16px; padding: 18px 20px;
     display: flex; gap: 16px; align-items: flex-start;
     position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   }
   .screen-num {
     font-size: 0.85rem; font-weight: 800; color: var(--text-muted);
@@ -266,8 +291,8 @@
   }
   .screen-badge {
     display: inline-block; font-size: 0.7rem; font-weight: 700;
-    color: var(--accent); background: rgba(88, 166, 255, 0.1);
-    padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(88, 166, 255, 0.2);
+    color: var(--text-main); background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
   }
 
   /* SPOTIFY SOUNDTRACKS SECTION */
@@ -290,7 +315,7 @@
   }
   .motto-title {
     font-family: 'Syne', sans-serif;
-    font-size: 4rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 28px;
+    font-size: 4.2rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 28px; color: var(--text-main);
   }
   .motto-title span.travel {
     font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; color: var(--text-muted);
@@ -299,7 +324,7 @@
     display: flex; justify-content: center; gap: 32px; font-size: 0.95rem; font-weight: 600; color: var(--text-muted);
     margin-top: 24px;
   }
-  .motto-socials a:hover { color: var(--accent); }
+  .motto-socials a:hover { color: var(--text-main); }
 
   footer {
     text-align: center; padding: 30px; color: var(--text-muted);
@@ -319,10 +344,10 @@
   }
 </style>
 </head>
-<body>
+<body class="theme-dark">
 
 <!-- HERO SECTION -->
-<section class="hero reveal" id="home">
+<section class="hero reveal" id="home" data-theme="dark">
   <div class="hero-left">
     <div class="eyebrow-tag">Nidigonda Lokesh — Software Engineer</div>
     <h1 class="hero-title">I build full-stack systems — and algorithms that <span>scale.</span></h1>
@@ -330,7 +355,7 @@
     <div class="btn-group">
       <a href="https://github.com/lokeshnidigonda-loki" target="_blank" class="btn-main"><i class="fab fa-github"></i> GitHub</a>
       <a href="https://leetcode.com/u/VSz199ebGu/" target="_blank" class="btn-sec"><i class="fas fa-code"></i> LeetCode</a>
-      <a href="https://x.com/lokeshnidigonda" target="_blank" class="btn-sec"><i class="fab fa-x-twitter"></i> Twitter / X</a>
+      <a href="https://x.com/LokeshCooks" target="_blank" class="btn-sec"><i class="fab fa-x-twitter"></i> Twitter / X</a>
     </div>
   </div>
 
@@ -345,7 +370,7 @@
 </section>
 
 <!-- TECHNICAL SKILLS -->
-<section class="reveal" id="about">
+<section class="reveal" id="about" data-theme="light">
   <h2 class="sec-heading">Technical Core & Capabilities</h2>
   <img src="BOOKANDGLASS.jpg" class="about-banner" alt="Developer Desk & Engineering Study">
   <div class="grid-4">
@@ -369,7 +394,7 @@
 </section>
 
 <!-- EDUCATION SECTION -->
-<section class="reveal" id="education">
+<section class="reveal" id="education" data-theme="light">
   <h2 class="sec-heading">Education History</h2>
   <div class="grid-3">
     <div class="card-box">
@@ -391,7 +416,7 @@
 </section>
 
 <!-- FEATURED SOFTWARE ENGINEERING PROJECTS -->
-<section class="reveal" id="projects">
+<section class="reveal" id="projects" data-theme="light">
   <h2 class="sec-heading">Featured Software Projects</h2>
   
   <!-- PROJECT 1: AMMA HAIRSTYLE -->
@@ -409,7 +434,7 @@
       <p style="color:var(--text-muted); margin-bottom:16px;">
         Full-stack booking web application enabling online customer reservations and real-time operational notifications. Engineered double-booking protection using SQLite partial unique indexes, automated Twilio SMS confirmations, and a mobile-first admin dashboard.
       </p>
-      <a href="https://github.com/lokeshnidigonda-loki/Amma-Hairstyle" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Amma Hairstyle Repo</a>
+      <a href="https://github.com/lokeshnidigonda-loki/Amma-Hairstyle" target="_blank" class="btn-main" style="background:#111; color:#FFF;"><i class="fab fa-github"></i> View Amma Hairstyle Repo</a>
     </div>
   </div>
 
@@ -428,7 +453,7 @@
       <p style="color:var(--text-muted); margin-bottom:16px;">
         Built a Decision Tree classification model achieving 85%+ accuracy for credit risk evaluation. Conducted end-to-end Exploratory Data Analysis (EDA) on financial datasets to clean, validate, and prepare data for modeling.
       </p>
-      <a href="https://github.com/lokeshnidigonda-loki/credit-risk-model" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Credit Risk Repo</a>
+      <a href="https://github.com/lokeshnidigonda-loki/credit-risk-model" target="_blank" class="btn-main" style="background:#111; color:#FFF;"><i class="fab fa-github"></i> View Credit Risk Repo</a>
     </div>
   </div>
 
@@ -447,13 +472,13 @@
       <p style="color:var(--text-muted); margin-bottom:16px;">
         Trained a Random Forest classifier with GridSearchCV hyperparameter tuning, increasing prediction accuracy by 12%. Visualized feature importances using Matplotlib to communicate model insights.
       </p>
-      <a href="https://github.com/lokeshnidigonda-loki/startupsuccess" target="_blank" class="btn-main"><i class="fab fa-github"></i> View Startup Success Repo</a>
+      <a href="https://github.com/lokeshnidigonda-loki/startupsuccess" target="_blank" class="btn-main" style="background:#111; color:#FFF;"><i class="fab fa-github"></i> View Startup Success Repo</a>
     </div>
   </div>
 </section>
 
 <!-- CINEMA SECTION -->
-<section class="reveal" id="cinema">
+<section class="reveal" id="cinema" data-theme="light">
   <div class="cinema-header">
     <div>
       <div class="review-badge"><span class="review-badge-dot"></span> Film Journal & Reviews</div>
@@ -508,7 +533,7 @@
 </section>
 
 <!-- SPOTIFY SOUNDTRACKS SECTION -->
-<section class="reveal" id="music">
+<section class="reveal" id="music" data-theme="light">
   <h2 class="sec-heading">Soundtracks for the way <i>there.</i></h2>
   <div class="spotify-grid">
     <!-- PLAYLIST 1: DSP -->
@@ -542,11 +567,11 @@
 </section>
 
 <!-- WORK HARD · EARN $ · TRAVEL SECTION -->
-<section class="motto-section reveal" id="contact">
+<section class="motto-section reveal" id="contact" data-theme="light">
   <h2 class="motto-title">work hard · earn $ · <span class="travel">travel.</span></h2>
   <div class="motto-socials">
     <a href="mailto:lokeshnidigonda@gmail.com"><i class="fas fa-envelope"></i> lokeshnidigonda@gmail.com</a>
-    <a href="https://x.com/lokeshnidigonda" target="_blank"><i class="fab fa-x-twitter"></i> @LokeshCooks</a>
+    <a href="https://x.com/LokeshCooks" target="_blank"><i class="fab fa-x-twitter"></i> @LokeshCooks</a>
   </div>
 </section>
 
@@ -563,18 +588,29 @@
   <a href="#contact" class="dock-btn" title="Contact"><i class="fas fa-paper-plane"></i></a>
 </div>
 
-<!-- SCRIPTS: LETTERBOXD & SCROLL REVEAL -->
+<!-- SCRIPTS: SCROLL COLOR TRANSITION & LETTERBOXD -->
 <script>
-  // INTERSECTION OBSERVER FOR SMOOTH SCROLL TRANSITIONS
-  const observer = new IntersectionObserver((entries) => {
+  // DYNAMIC SCROLL BACKGROUND COLOR & REVEAL OBSERVER
+  const sections = document.querySelectorAll('section');
+  const body = document.body;
+
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
+        const targetTheme = entry.target.getAttribute('data-theme');
+        if (targetTheme === 'light') {
+          body.classList.add('theme-light');
+          body.classList.remove('theme-dark');
+        } else {
+          body.classList.add('theme-dark');
+          body.classList.remove('theme-light');
+        }
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.25 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  sections.forEach(sec => scrollObserver.observe(sec));
 
   // DYNAMIC LETTERBOXD SCRIPT
   async function fetchLetterboxdReviews() {
