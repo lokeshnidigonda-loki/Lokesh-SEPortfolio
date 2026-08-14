@@ -363,29 +363,51 @@
 <script>
   async function fetchLetterboxdReviews() {
     const username = 'lokeshnidigonda';
-    // Using a direct CORS proxy to bypass 1-hour third-party caching
-    const rssUrl = `https://letterboxd.com/${username}/rss/`;
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+    const rssUrl = `https://letterboxd.com/${username}/rss/?t=${Date.now()}`;
+    
+    // Primary and fallback real-time CORS proxies
+    const proxies = [
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
+      `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`
+    ];
+
+    let xmlText = null;
+
+    // Try primary proxy, fallback to secondary if needed
+    for (const proxy of proxies) {
+      try {
+        const response = await fetch(proxy);
+        if (response.ok) {
+          xmlText = await response.text();
+          break;
+        }
+      } catch (err) {
+        console.warn(`Proxy ${proxy} failed, trying next...`);
+      }
+    }
+
+    const container = document.getElementById('letterboxd-feed');
+
+    if (!xmlText) {
+      container.innerHTML = '<p style="color:var(--text-muted);">Unable to load live Letterboxd reviews.</p>';
+      return;
+    }
 
     try {
-      const response = await fetch(proxyUrl);
-      const xmlText = await response.text();
-      
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
       const items = xmlDoc.querySelectorAll('item');
-      const container = document.getElementById('letterboxd-feed');
 
       if (items.length > 0) {
         container.innerHTML = ''; // Clear placeholder
 
-        // Iterate through the latest entries (up to 4)
+        // Renders up to the 4 latest reviews
         Array.from(items).slice(0, 4).forEach(item => {
           const title = item.querySelector('title')?.textContent || '';
           const link = item.querySelector('link')?.textContent || '#';
           const description = item.querySelector('description')?.textContent || '';
 
-          // Extract poster image and clean review text
+          // Extract movie poster and clean review text
           const imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
           const posterUrl = imgMatch ? imgMatch[1] : '';
           const cleanReview = description.replace(/<[^>]*>?/gm, '').trim();
@@ -406,10 +428,11 @@
         container.innerHTML = '<p style="color:var(--text-muted);">No reviews found on Letterboxd.</p>';
       }
     } catch (e) {
-      console.error("Letterboxd fetch error:", e);
-      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--text-muted);">Unable to load live Letterboxd reviews.</p>';
+      console.error("Parsing error:", e);
+      container.innerHTML = '<p style="color:var(--text-muted);">Error rendering reviews.</p>';
     }
   }
+
   document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
 </script>
 
